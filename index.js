@@ -8,9 +8,10 @@ const server = express();
 
 server.get("/",function(request,response){
   // Fetch a random quote from the quotes array.
-  let quote = utils.getRandomElement(quotes)
+  let quote = utils.getRandomElement(quotes) ?? { quoteText: "404 Quote Not Found", quoteAuthor: "Server"}
   // Send it to the user.
-  response.send(`" ${quote} "`)
+  response.send(`" <i>${quote.quoteText}</i> " <br> 
+  ~ ${quote.quoteAuthor || "Anonymous"} `)
 });
 
 // Start the server on port 3000.
